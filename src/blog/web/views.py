@@ -3,4 +3,6 @@ from django.http.response import HttpResponse
 
 
 def index(request):
-    return HttpResponse("views in post")
+
+    context = { }
+    return render(request, 'web/index.html',context=context)

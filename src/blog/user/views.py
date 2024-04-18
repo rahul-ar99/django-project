@@ -1,6 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,reverse
+
 from django.http.response import HttpResponse, HttpResponseRedirect
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from user.forms import UserForm
+
 
 def login(request):
     if request.method == 'POST':
@@ -18,7 +21,23 @@ def login(request):
             'message':'Invalid username or password'
         }
         return render(request, 'users/login.html',context=context)
+    else:
+        context = {
+            'title':'Login'
+        }
+        return render(request,'users/login.html',context=context)
+
+
+
+def logout(request):
+    auth_logout(request)
+    return HttpResponseRedirect(reverse("web:index"))
+
+
+def signup(request):
+    form = UserForm()
     context = {
-        'title':'Login'
+        "title":"signup",
+        "form":form
     }
-    return render(request,'users/login.html',context=context)
+    return render(request, 'users/signup.html', context=context)

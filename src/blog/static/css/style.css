@@ -1,3 +1,21 @@
+a{
+    text-decoration: none;
+    color: #000000;
+}
+
+.wrapper{
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header .right a{
+    padding: 10px 20px;
+    background-color: red;
+}
+
+
 #login {
     height: 100vh;
     display: flex;

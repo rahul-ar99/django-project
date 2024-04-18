@@ -1,23 +1,22 @@
 {% extends "users/auth_base.html" %}
 {% block content %}
 {% load static %}
-
             <div class="top">
-                Login Page
+                Signup Page
             </div>
             <div>
                 <!-- superuser username: rahul    password: 1234 -->
                 <form action="" method="post">
                     {% csrf_token %}
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password">
+                    {% for field in form %}
+                    <label for="{{field.id_for_label}}">{{field.label}}</label>
+                    {{field}}
+                    {% endfor %}
                     {% if error %}
                         <p class="error-message">{{message}}</p>
                     {% endif %}
                     <button type="submit">Login</button>
-                    <a href="{% url 'user:signup' %}">create account</a>
+                    <a href="{% url 'user:login' %}">create account</a>
                 </form>
             </div> 
 {% endblock %}
